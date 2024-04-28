@@ -2,9 +2,12 @@ module github.com/Troxsoft/Swik
 
 go 1.22.2
 
-require github.com/jchv/go-webview2 v0.0.0-20221223143126-dc24628cff85
-
 require (
-	github.com/jchv/go-winloader v0.0.0-20200815041850-dec1ee9a7fd5 // indirect
-	golang.org/x/sys v0.0.0-20210218145245-beda7e5e158e // indirect
+	github.com/fatih/color v1.16.0 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/robertkrimen/otto v0.4.0 // indirect
+	golang.org/x/sys v0.14.0 // indirect
+	golang.org/x/text v0.4.0 // indirect
+	gopkg.in/sourcemap.v1 v1.0.5 // indirect
 )

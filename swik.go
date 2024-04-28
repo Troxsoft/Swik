@@ -1,30 +1,38 @@
 package main
 
 import (
-	"log"
+	"fmt"
+	"os"
 
-	"github.com/jchv/go-webview2"
+	"github.com/Troxsoft/Swik/cmd"
+	"github.com/Troxsoft/Swik/pkg"
 )
 
 func main() {
-	w := webview2.NewWithOptions(webview2.WebViewOptions{
-		Debug:     true,
-		AutoFocus: true,
+	args := os.Args
+	if len(args) == 3 {
+		if args[1] == "new" {
 
-		WindowOptions: webview2.WindowOptions{
-			Title:  "Minimal webview example",
-			Width:  800,
-			Height: 600,
-			IconId: 2,
-			Center: true,
-		},
-	})
+			err := pkg.CreateDB(args[2])
+			if err != nil {
+				fmt.Printf("Error: %v ❌\n", err)
+			} else {
+				fmt.Printf("Database created successfully: %s ✔", args[2])
+			}
+		} else {
+			fmt.Printf("Command invalid: %v\n", args[1:])
+		}
+	} else if len(args) == 2 {
+		db, err := pkg.NewDBFromFile(args[1])
+		if err != nil {
+			fmt.Printf("Error: %v ❌\n", err)
+		}
+		db.AddJSFunctions()
+		cli := cmd.NewCLI(db)
+		cli.Run()
 
-	if w == nil {
-		log.Fatalln("Failed to load webview.")
+	} else {
+		fmt.Printf("Comand invalid: %v\n", args[1:])
 	}
-	defer w.Destroy()
-	w.SetSize(800, 600, webview2.HintNone)
-	w.Navigate("https://en.m.wikipedia.org/wiki/Main_Page")
-	w.Run()
+
 }

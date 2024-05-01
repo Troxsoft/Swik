@@ -8,7 +8,7 @@
   - **All in one executable**
   - **Simplicity (this does not mean it is not powerful)**
 
-##API
+## API
 
 - ### `db.get(key:string)`
   Gets the specified key if it does not return null
